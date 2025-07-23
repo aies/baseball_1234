@@ -17,19 +17,32 @@ public:
     GuessResult guess(const string& guessNumber) {
         assertIllegalArgument(guessNumber);
 
-        if(guessNumber == question)
-            return { true, 3, 0 };
-
-        int strikes_count = 0;
-        int balls_count = 0;
+        GuessResult ret = { isSolved(guessNumber) , 0  , 0 };
 
         for (char ch : guessNumber) {
-            if (guessNumber[ch] == question[ch])
-                strikes_count++;
-            balls_count++;
+            if (guessNumber[ch] == question[ch]) {
+                ret.strikes++;
+            }
+            ret.balls++;
         }
-        return { (guessNumber == question), strikes_count, balls_count };
+        return ret;
     }
+
+private:
+    string question;
+
+    bool isSolved(const std::string& guessNumber)
+    {
+        return (guessNumber == question);
+    }
+
+    bool isDuplicatedNumber(const std::string& guessNumber)
+    {
+        return guessNumber[0] == guessNumber[1] ||
+            guessNumber[0] == guessNumber[2] ||
+            guessNumber[2] == guessNumber[1];
+    }
+
     void assertIllegalArgument(const std::string& guessNumber)
     {
         if (guessNumber.length() != 3) {
@@ -44,12 +57,4 @@ public:
             throw invalid_argument("Must be have the same number");
         }
     }
-    bool isDuplicatedNumber(const std::string& guessNumber)
-    {
-        return guessNumber[0] == guessNumber[1] ||
-            guessNumber[0] == guessNumber[2] ||
-            guessNumber[2] == guessNumber[1];
-    }
-private:
-    string question;
 };
