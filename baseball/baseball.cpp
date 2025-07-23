@@ -23,11 +23,13 @@ public:
         ret.strikes = 0;
         ret.balls = 0;
 
-        for (char ch : guessNumber) {
-            if (guessNumber[ch] == question[ch]) {
+        for (int index = 0; index < 3;index++) {
+            if (guessNumber[index] == question[index]) {
                 ret.strikes++;
             }
-            ret.balls++;
+            else {
+                ret.balls++;
+            }
         }
         return ret;
     }
