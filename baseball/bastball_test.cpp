@@ -2,6 +2,7 @@
 #include "baseball.cpp"
 
 class BaseballFixture : public testing::Test {
+public:
     Baseball game;
 
     void assertIllegalArgment(string gussNumber) {
@@ -15,12 +16,13 @@ class BaseballFixture : public testing::Test {
     }
 };
 
-TEST(baseballGame, TryGameTest) {
-    Baseball game;
-
-    EXPECT_THROW(game.guss(string("12")), length_error);
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidLength) {
+    assertIllegalArgment("12");
 }
 
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidChar) {
+    assertIllegalArgment("12s");
+}
 int main() {
     ::testing::InitGoogleMock();
     return RUN_ALL_TESTS();
