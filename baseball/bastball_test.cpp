@@ -42,7 +42,7 @@ TEST_F(BaseballFixture, ReturnSolvedResultIfMatchedNumber2) {
     GuessResult result = game.guess("321");
 
     EXPECT_FALSE(result.solved);
-    EXPECT_EQ(2, result.strikes);
+    EXPECT_EQ(1, result.strikes);
     EXPECT_EQ(2, result.balls);
 }
 
