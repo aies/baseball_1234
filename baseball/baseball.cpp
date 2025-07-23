@@ -21,10 +21,11 @@ public:
             return { true, 3, 0 };
 
         int match_count = 0;
-        if (guessNumber[0] == question[0]) match_count++;
-        if (guessNumber[1] == question[1]) match_count++;
-        if (guessNumber[2] == question[2]) match_count++;
 
+        for (char ch : guessNumber) {
+            if (guessNumber[ch] == question[ch])
+                match_count++;
+        }
         return { true, match_count, 0 };
     }
     void assertIllegalArgument(const std::string& guessNumber)
