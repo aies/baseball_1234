@@ -2,8 +2,9 @@
 #include "baseball.cpp"
 
 TEST(baseballGame, TryGameTest) {
+    Baseball game;
 
-    EXPECT_EQ(1, 1);
+    EXPECT_THROW(game.guss(string("12")), length_error);
 }
 
 
