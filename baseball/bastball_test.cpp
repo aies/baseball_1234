@@ -16,13 +16,11 @@ public:
     }
 };
 
-TEST_F(BaseballFixture, ThrowExceptionWhenInvalidLength) {
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidCase) {
     assertIllegalArgment("12");
-}
-
-TEST_F(BaseballFixture, ThrowExceptionWhenInvalidChar) {
     assertIllegalArgment("12s");
 }
+
 int main() {
     ::testing::InitGoogleMock();
     return RUN_ALL_TESTS();
