@@ -17,7 +17,11 @@ public:
     GuessResult guess(const string& guessNumber) {
         assertIllegalArgument(guessNumber);
 
-        GuessResult ret = { isSolved(guessNumber) , 0  , 0 };
+        GuessResult ret;
+
+        ret.solved = isSolved(guessNumber);
+        ret.strikes = 0;
+        ret.balls = 0;
 
         for (char ch : guessNumber) {
             if (guessNumber[ch] == question[ch]) {
@@ -33,7 +37,7 @@ private:
 
     bool isSolved(const std::string& guessNumber)
     {
-        return (guessNumber == question);
+        return (guessNumber == question) ? true : false;
     }
 
     bool isDuplicatedNumber(const std::string& guessNumber)
